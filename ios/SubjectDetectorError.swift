@@ -7,7 +7,7 @@ enum SubjectDetectorError: LocalizedError, Equatable {
   var errorDescription: String? {
     switch self {
     case .unsupportedUri(let uri):
-      return "SubjectDetector: unsupported uri \"\(uri)\" — pass a file:// uri or an absolute path"
+      return "SubjectDetector: unsupported uri \"\(uri)\". Use a file:// uri or an absolute path"
     case .unreadableImage(let uri):
       return "SubjectDetector: could not decode an image at \"\(uri)\""
     }
