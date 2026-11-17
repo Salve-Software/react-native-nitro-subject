@@ -1,9 +1,9 @@
 # Releasing
 
-Releases are cut by [semantic-release](https://github.com/semantic-release/semantic-release) from the Conventional Commits on `main`, through the manual **Release** workflow (Actions → Release → Run workflow). It bumps `package.json`, updates `CHANGELOG.md`, tags `vX.Y.Z`, creates the GitHub release and publishes to npm with [trusted publishing](https://docs.npmjs.com/trusted-publishers) (OIDC — no `NPM_TOKEN`).
+Releases are made with semantic-release from the commits on `main`. Run the **Release** workflow manually in GitHub Actions. It updates the version and `CHANGELOG.md`, creates the tag and GitHub release, and publishes to npm using trusted publishing (no token).
 
-| Commit type | Release |
-| --- | --- |
+| Commit | Version bump |
+|---|---|
 | breaking change | major |
 | `feat` | minor |
 | `fix`, `perf`, `refactor`, `docs`, `chore`, revert | patch |
@@ -11,10 +11,10 @@ Releases are cut by [semantic-release](https://github.com/semantic-release/seman
 
 ## First release
 
-Trusted publishing can only be configured for a package that already exists on npm, so the first version is published by hand:
+Trusted publishing can only be set up after the package exists on npm, so the first version is published manually:
 
-1. Run **Release** with **Publish to npm** unchecked. It tags `v1.0.0`, commits the version bump and changelog to `main` and creates the GitHub release — but does not publish.
-2. Publish that exact commit from your machine:
+1. Run **Release** with **Publish to npm** unchecked. This creates the `v1.0.0` tag, the changelog and the GitHub release, without publishing.
+2. Publish that tag from your machine:
 
    ```sh
    git fetch --tags && git checkout v1.0.0
@@ -22,6 +22,6 @@ Trusted publishing can only be configured for a package that already exists on n
    npm publish
    ```
 
-3. On npmjs.com, open the package → Settings → Trusted Publisher → GitHub Actions: organization `Salve-Software`, repository `react-native-nitro-subject`, workflow `release.yml`.
+3. On npmjs.com, go to the package settings and add a trusted publisher: GitHub Actions, organization `Salve-Software`, repository `react-native-nitro-subject`, workflow `release.yml`.
 
-From then on, run **Release** with **Publish to npm** checked.
+After that, run **Release** with **Publish to npm** checked.
