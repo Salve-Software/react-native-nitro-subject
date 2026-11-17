@@ -13,7 +13,7 @@ describe('padRect', () => {
     expect(padRect({ rect, padding: 0.1 })).toEqual({ x: 60, y: 170, width: 480, height: 360 });
   });
 
-  test('may overflow the image — clipping is fitRectToImage’s job', () => {
+  test('may overflow the image', () => {
     const rect = { x: 0, y: 0, width: 100, height: 100 };
 
     expect(padRect({ rect, padding: 0.5 })).toEqual({ x: -50, y: -50, width: 200, height: 200 });
