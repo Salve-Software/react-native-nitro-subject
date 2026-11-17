@@ -108,7 +108,7 @@ function modelButtonLabel(status: ModelStatus): string {
     case 'ready':
       return 'Model ready';
     case 'unavailable':
-      return 'Model unavailable — retry';
+      return 'Model unavailable, retry';
     default:
       return 'Download model';
   }

@@ -1,7 +1,4 @@
-/**
- * Design tokens shared with the other Salve Software example apps —
- * dark-only, single green accent.
- */
+/** Colors and spacing for the example app. */
 export const colors = {
   canvas: '#0d0d0d',
   surface: '#151617',

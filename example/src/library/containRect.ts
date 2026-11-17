@@ -7,8 +7,8 @@ interface IContainRectProps {
 }
 
 /**
- * Maps the frame from image pixels to the view of an `<Image resizeMode="contain">`
- * — the image is scaled to fit and centred, leaving letterbox bars.
+ * Converts the frame from image pixels to the coordinates of an
+ * `<Image resizeMode="contain">`, which scales the image to fit and centers it.
  */
 export function containRect({
   frame,
