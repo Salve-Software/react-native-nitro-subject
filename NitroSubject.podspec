@@ -10,17 +10,21 @@ Pod::Spec.new do |s|
   s.license      = package["license"]
   s.authors      = package["author"]
 
-  s.platforms    = { :ios => min_ios_version_supported, :visionos => 1.0 }
-  s.source       = { :git => "https://github.com/eumaninho54/react-native-nitro-subject.git", :tag => "#{s.version}" }
+  s.platforms    = { :ios => min_ios_version_supported }
+  s.source       = { :git => "https://github.com/Salve-Software/react-native-nitro-subject.git", :tag => "#{s.version}" }
 
   s.source_files = [
     # Implementation (Swift)
     "ios/**/*.{swift}",
     # Autolinking/Registration (Objective-C++)
     "ios/**/*.{m,mm}",
-    # Implementation (C++ objects)
-    "cpp/**/*.{hpp,cpp}",
   ]
+  # SwiftPM test package: its sources are symlinks back into ios/.
+  s.exclude_files = ["ios/tests/**/*"]
+
+  # Apple frameworks only — nothing vendored, so every architecture builds,
+  # including arm64 simulators.
+  s.frameworks = "Vision", "ImageIO", "CoreVideo", "CoreGraphics"
 
   load 'nitrogen/generated/ios/NitroSubject+autolinking.rb'
   add_nitrogen_files(s)
