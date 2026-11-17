@@ -201,7 +201,7 @@ yarn test:native:android  # Kotlin core (JUnit)
 
 ## Contributing
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you'd like to change. Commits follow [Conventional Commits](https://www.conventionalcommits.org/).
+Pull requests are welcome. For major changes, please open an issue first to discuss what you'd like to change. Commits follow [Conventional Commits](https://www.conventionalcommits.org/); releases are automated — see [docs/releasing.md](./docs/releasing.md).
 
 ## License
 
