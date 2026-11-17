@@ -102,6 +102,10 @@ android {
     }
   }
 
+  testOptions {
+    unitTests.returnDefaultValues = true
+  }
+
   lintOptions {
     disable "GradleCompatible"
   }
@@ -137,6 +141,14 @@ dependencies {
 
   // Add a dependency on NitroModules
   implementation project(":react-native-nitro-modules")
+
+  // ML Kit Subject Segmentation, delivered by Google Play services (no model bundled in the APK)
+  implementation "com.google.android.gms:play-services-mlkit-subject-segmentation:16.0.0-beta1"
+  // ModuleInstallClient, used to check/download the model on demand
+  implementation "com.google.android.gms:play-services-base:18.5.0"
+  implementation "androidx.exifinterface:exifinterface:1.4.1"
+
+  testImplementation "junit:junit:4.13.2"
 }
 
 if (isNewArchitectureEnabled()) {
