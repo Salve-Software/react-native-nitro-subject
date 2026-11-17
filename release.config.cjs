@@ -49,7 +49,16 @@ module.exports = {
         changelogTitle: '# Changelog',
       },
     ],
-    '@semantic-release/npm',
+    [
+      '@semantic-release/npm',
+      {
+        // NPM_PUBLISH=false still bumps package.json, tags and creates the
+        // GitHub release, but skips `npm publish` — used for the first
+        // release, which is published by hand before trusted publishing
+        // can be configured on npmjs.com.
+        npmPublish: process.env.NPM_PUBLISH !== 'false',
+      },
+    ],
     '@semantic-release/github',
     [
       '@semantic-release/git',
