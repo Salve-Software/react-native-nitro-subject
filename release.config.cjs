@@ -52,10 +52,9 @@ module.exports = {
     [
       '@semantic-release/npm',
       {
-        // NPM_PUBLISH=false still bumps package.json, tags and creates the
-        // GitHub release, but skips `npm publish` — used for the first
-        // release, which is published by hand before trusted publishing
-        // can be configured on npmjs.com.
+        // NPM_PUBLISH=false creates the tag and GitHub release but skips
+        // `npm publish`. Used for the first release, which is published by
+        // hand. See docs/releasing.md.
         npmPublish: process.env.NPM_PUBLISH !== 'false',
       },
     ],
