@@ -1,6 +1,6 @@
-# Cropping with the detected frame
+# Cropping
 
-`Subject.detect` resolves whole pixels of the **upright** image — after its EXIF orientation is applied, which is what users see and what image croppers operate on.
+`Subject.detect` returns the box in pixels of the displayed image (EXIF orientation applied), which is what most croppers expect.
 
 ## expo-image-manipulator
 
@@ -10,7 +10,7 @@ import { Subject } from '@salve-software/react-native-nitro-subject';
 
 export async function cropToSubject(uri: string): Promise<string> {
   const frame = await Subject.detect({ uri, padding: 0.05, minAreaRatio: 0.02 });
-  if (!frame) return uri; // nothing found: keep the whole photo
+  if (!frame) return uri;
 
   const context = ImageManipulator.manipulate(uri);
   context.crop({ originX: frame.x, originY: frame.y, width: frame.width, height: frame.height });
@@ -23,11 +23,10 @@ export async function cropToSubject(uri: string): Promise<string> {
 
 ## react-native-nitro-image
 
-`loadImage` reports the upright size but crops the stored bitmap, so bake the rotation in first by redrawing the image at its own size:
+`loadImage` reports the rotated size but crops the original bitmap. Redraw the image at its own size first so the rotation is applied to the pixels:
 
 ```ts
 import { loadImage } from 'react-native-nitro-image';
-import { Subject } from '@salve-software/react-native-nitro-subject';
 
 const frame = await Subject.detect({ uri, padding: 0.05 });
 
@@ -38,7 +37,7 @@ if (frame) {
 }
 ```
 
-## Square thumbnail around the subject
+## Square crop around the subject
 
 ```ts
 import type { ISubjectFrame } from '@salve-software/react-native-nitro-subject';
