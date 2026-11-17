@@ -3,8 +3,8 @@ import Foundation
 import ImageIO
 import UniformTypeIdentifiers
 
-/// Writes synthetic photos to a temp dir: a dark, rounded "product" on a
-/// light, slightly textured backdrop — no third-party photos in the repo.
+/// Writes generated test photos to a temp dir: a dark rounded shape on a
+/// light background.
 enum FixtureImage {
   /// - Parameters:
   ///   - size: Size of the upright image.

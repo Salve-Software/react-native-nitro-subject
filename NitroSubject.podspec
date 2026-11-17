@@ -22,8 +22,7 @@ Pod::Spec.new do |s|
   # SwiftPM test package: its sources are symlinks back into ios/.
   s.exclude_files = ["ios/tests/**/*"]
 
-  # Apple frameworks only — nothing vendored, so every architecture builds,
-  # including arm64 simulators.
+  # Only Apple frameworks, nothing bundled, so it also builds for the arm64 simulator.
   s.frameworks = "Vision", "ImageIO", "CoreVideo", "CoreGraphics"
 
   load 'nitrogen/generated/ios/NitroSubject+autolinking.rb'
