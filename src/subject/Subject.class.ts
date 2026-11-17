@@ -6,8 +6,8 @@ import { DetectSubject, PrepareSubject } from './classes';
 const _bridge = NitroModules.createHybridObject<SubjectDetector>('SubjectDetector');
 
 /**
- * Public entry point of the library. A static-only facade over the native
- * detector — Apple Vision on iOS, ML Kit Subject Segmentation on Android.
+ * Public entry point of the library. Uses Apple Vision on iOS and
+ * ML Kit Subject Segmentation on Android.
  */
 export class Subject {
   private static readonly detectSubject = new DetectSubject(_bridge);
