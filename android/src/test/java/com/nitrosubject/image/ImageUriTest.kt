@@ -27,7 +27,7 @@ class ImageUriTest {
     for (uri in listOf("https://example.com/a.jpg", "photo.jpg", "")) {
       val error = assertThrows(IllegalArgumentException::class.java) { ImageUri.parse(uri) }
       assertEquals(
-        "SubjectDetector: unsupported uri \"$uri\" — pass a file:// or content:// uri, or an absolute path",
+        "SubjectDetector: unsupported uri \"$uri\". Use a file:// or content:// uri, or an absolute path",
         error.message,
       )
     }

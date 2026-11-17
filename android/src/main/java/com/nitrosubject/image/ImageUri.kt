@@ -17,7 +17,7 @@ sealed interface ImageUri {
     }
 
     private fun unsupported(uri: String) = IllegalArgumentException(
-      "SubjectDetector: unsupported uri \"$uri\" — pass a file:// or content:// uri, or an absolute path"
+      "SubjectDetector: unsupported uri \"$uri\". Use a file:// or content:// uri, or an absolute path"
     )
   }
 }
