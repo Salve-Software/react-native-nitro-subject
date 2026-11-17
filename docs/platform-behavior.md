@@ -1,39 +1,36 @@
 # Platform behavior
 
-Both platforms share one contract: the native side locates the subject and resolves its box in pixels of the full-resolution **upright** image, unrounded. Padding, clamping to the image, rounding to whole pixels and `minAreaRatio` happen in TypeScript (`src/subject/classes/DetectSubject`), so they behave the same everywhere.
+The native code finds the subject and returns its box in pixels of the full-size image. Padding, clamping, rounding and `minAreaRatio` are applied in TypeScript, so they work the same on both platforms.
 
 ## iOS
 
-Apple frameworks only — Vision, ImageIO, CoreVideo, CoreGraphics. Nothing is vendored, so the pod builds for every architecture, arm64 simulators included.
+Only Apple frameworks are used: Vision, ImageIO, CoreVideo and CoreGraphics.
 
-1. `ImageUri` resolves `file://` URIs and absolute paths; anything else rejects.
-2. `UprightImage.load` decodes a thumbnail whose longest side is 1024 px with `kCGImageSourceCreateThumbnailWithTransform`, which applies the EXIF orientation, and records the upright full-resolution size.
-3. `SubjectEngineChain` runs the engines best-first; the first match wins:
+1. The uri must be `file://` or an absolute path.
+2. The image is loaded as a 1024 px thumbnail with the EXIF orientation applied.
+3. The engines below run in order until one finds something.
+4. The box is scaled back to the full image size.
 
-| Order | Engine | Availability | `source` |
+| Order | Engine | iOS | `source` |
 |---|---|---|---|
-| 1 | `ForegroundMaskEngine` — box around the union of all foreground instances | iOS 17+ | `foreground-mask` |
-| 2 | `SaliencyEngine(.objectnessSaliency)` — most confident salient object | iOS 13+ | `objectness-saliency` |
-| 3 | `SaliencyEngine(.attentionSaliency)` — most confident attention region | iOS 13+ | `attention-saliency` |
+| 1 | Foreground instance mask (box around all instances) | 17+ | `foreground-mask` |
+| 2 | Objectness saliency (most confident object) | 13+ | `objectness-saliency` |
+| 3 | Attention saliency (most confident region) | 13+ | `attention-saliency` |
 
-4. The normalized box is scaled to the full-resolution upright size.
-
-An engine that throws or finds nothing hands over to the next one. If **every** engine threw, `detect` rejects with the last error; if they ran and found nothing, it resolves `null`.
+If all engines throw an error, `detect` rejects with the last one. If they run but find nothing, it returns `null`.
 
 ### Simulator
 
-The iOS Simulator has no Neural Engine. Every request is pinned to the CPU there (`VNRequest.preferCPUOnSimulator`), which is enough for attention saliency, but the foreground-mask model fails with *"Could not create inference context"* and objectness finds no objects. Expect `source: 'attention-saliency'` on the simulator and `foreground-mask` on devices running iOS 17+.
+The simulator has no Neural Engine. The library runs Vision on the CPU there, but the foreground mask model still fails ("Could not create inference context") and objectness finds nothing, so you get `attention-saliency`. On a device with iOS 17+ you get `foreground-mask`.
 
-The Swift core is covered by `ios/tests/SubjectDetectorTests` (`yarn test:native:ios`), which runs on the host Mac — where the Neural Engine *is* available — including the real Vision engines against synthetic photos, upright and EXIF-rotated.
+The Swift tests in `ios/tests/SubjectDetectorTests` run on the Mac, where the models do work, and check the real engines against generated test images.
 
 ## Android
 
-[ML Kit Subject Segmentation](https://developers.google.com/ml-kit/vision/subject-segmentation) from `com.google.android.gms:play-services-mlkit-subject-segmentation`. The model is an optional Google Play services module:
+Uses [ML Kit Subject Segmentation](https://developers.google.com/ml-kit/vision/subject-segmentation) through Google Play services. The model is a separate Play services module:
 
-- `detect` first asks `ModuleInstallClient.areModulesAvailable`. If the module is missing it calls `deferredInstall` and resolves `null` right away — it never waits for a download.
-- `prepare(timeoutMs)` calls `installModules` and waits for it, up to `timeoutMs`.
-- Devices without Google Play services resolve `null` and `prepare` resolves `false`.
+- `detect` checks if the module is installed. If not, it asks Play services to download it later and returns `null` without waiting.
+- `prepare(timeoutMs)` downloads it and waits.
+- On devices without Play services, `detect` returns `null` and `prepare` returns `false`.
 
-`UprightImageLoader` accepts `file://`, `content://`, `android.resource://` and absolute paths; decodes with a power-of-two `inSampleSize`, then mirrors/rotates per the EXIF orientation and scales to 1024 px in a single `Matrix`. `SubjectSegmenterEngine` runs with the foreground confidence mask; the box covers every pixel above 0.5 and `confidence` is the mean confidence of those pixels.
-
-The pure Kotlin pieces (uri parsing, EXIF orientation, sample size, mask bounds, install progress) are covered by JUnit (`yarn test:native:android`).
+Accepted uris: `file://`, `content://`, `android.resource://` and absolute paths. The image is decoded at a reduced size, rotated according to EXIF and scaled to 1024 px. The box covers every pixel with foreground confidence above 0.5, and `confidence` is the average of those pixels.
