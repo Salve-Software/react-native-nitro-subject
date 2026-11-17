@@ -1,22 +1,14 @@
-# Nitro Subject — example app
+# Example app
 
-Pick a photo, see the detected subject outlined, switch the padding. On Android, **Download model** calls `Subject.prepare()`.
+Pick a photo and the app draws a box around the subject. You can change the padding. On Android there is also a button to download the model.
 
 From the repository root:
 
 ```sh
-yarn                  # install
-yarn example pod      # iOS: install pods
-yarn example start    # Metro
-yarn example ios      # or: yarn example android
+yarn
+yarn example pod      # iOS only
+yarn example start
+yarn example ios      # or android
 ```
 
-```text
-App.tsx                      SafeArea + the single screen
-src/screens/DetectScreen     picks a photo and drives the detection
-src/hooks/useSubjectDetection
-src/components/SubjectPreview  photo + subject outline
-src/components/ui            Button, SegmentedControl, ScreenHeader
-src/library                  containRect (image → view coordinates), describeFrame
-src/theme/tokens.ts          colors, spacing, radius
-```
+The code is in `src/`: `screens/DetectScreen.tsx` has the screen, `components/` the UI, `hooks/useSubjectDetection.ts` calls the library and `library/containRect.ts` converts the box to screen coordinates.
