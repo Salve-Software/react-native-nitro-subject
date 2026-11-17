@@ -1,9 +1,8 @@
 package com.nitrosubject.image
 
 /**
- * Largest power-of-two `inSampleSize` that still decodes [size] with its
- * longest side at or above [maxPixelSize] — the cheap decode-time half of the
- * downscale; the bitmap is scaled exactly afterwards.
+ * Largest power-of-two `inSampleSize` that keeps the longest side of [size]
+ * at or above [maxPixelSize]. The bitmap is scaled to the exact size later.
  */
 fun sampleSizeFor(size: ImageSize, maxPixelSize: Int): Int {
   val longest = maxOf(size.width, size.height)

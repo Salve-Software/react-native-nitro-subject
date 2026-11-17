@@ -14,8 +14,8 @@ class SubjectLocator(context: Context) {
   val installer = SubjectModelInstaller(context, engine.client)
 
   /**
-   * Null when there is no subject — or when the model is not downloaded yet:
-   * a background download is requested instead of making the caller wait.
+   * Returns null when there is no subject. Also returns null when the model
+   * is not downloaded yet, after asking Play services to download it.
    */
   fun locate(uri: String): LocatedSubject? {
     if (!installer.isAvailable()) {
