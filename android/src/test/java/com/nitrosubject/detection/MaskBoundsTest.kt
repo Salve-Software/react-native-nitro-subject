@@ -29,7 +29,6 @@ class MaskBoundsTest {
 
   @Test
   fun `box spans disjoint regions and confidence is the mean inside the mask`() {
-    // 4×2: (1,0) = 0.6 and (3,1) = 1.0
     val match = mask(4, 0f, 0.6f, 0f, 0f, 0f, 0f, 0f, 1.0f)
 
     assertEquals(NormalizedBox(0.25, 0.0, 1.0, 1.0), match?.box)

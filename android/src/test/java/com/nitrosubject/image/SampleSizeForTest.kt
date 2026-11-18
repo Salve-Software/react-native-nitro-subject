@@ -13,9 +13,7 @@ class SampleSizeForTest {
 
   @Test
   fun `picks the largest power of two that stays at or above the target`() {
-    // 4000 / 2 = 2000, / 4 = 1000 < 1024 → 2
     assertEquals(2, sampleSizeFor(ImageSize(4000, 3000), maxPixelSize = 1024))
-    // 8192 / 8 = 1024 → 8
     assertEquals(8, sampleSizeFor(ImageSize(6000, 8192), maxPixelSize = 1024))
   }
 }
