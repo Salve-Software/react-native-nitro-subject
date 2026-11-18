@@ -3,6 +3,8 @@
 </p>
 
 <p align="center">
+  <a href="https://www.npmjs.com/package/@salve-software/react-native-nitro-subject"><img src="https://img.shields.io/npm/v/@salve-software/react-native-nitro-subject.svg?style=flat-square" alt="Version"></a>
+  <a href="https://www.npmjs.com/package/@salve-software/react-native-nitro-subject"><img src="https://img.shields.io/npm/dm/@salve-software/react-native-nitro-subject.svg?style=flat-square" alt="Downloads"></a>
   <img src="https://img.shields.io/badge/React%20Native-0.78+-61dafb?style=flat-square&logo=react" alt="React Native">
   <img src="https://img.shields.io/badge/Nitro%20Modules-0.37+-orange?style=flat-square" alt="Nitro Modules">
   <img src="https://img.shields.io/badge/runs-on%20device-brightgreen?style=flat-square" alt="On device">
