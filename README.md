@@ -1,16 +1,18 @@
-# react-native-nitro-subject
+<p align="center">
+  <img src="assets/banner.png" alt="react-native-nitro-subject" width="1280">
+</p>
 
-[![npm](https://img.shields.io/npm/v/@salve-software/react-native-nitro-subject?style=flat-square)](https://www.npmjs.com/package/@salve-software/react-native-nitro-subject)
-[![license](https://img.shields.io/badge/license-MIT-green?style=flat-square)](./LICENSE)
+<p align="center">
+  <img src="https://img.shields.io/badge/React%20Native-0.78+-61dafb?style=flat-square&logo=react" alt="React Native">
+  <img src="https://img.shields.io/badge/Nitro%20Modules-0.37+-orange?style=flat-square" alt="Nitro Modules">
+  <img src="https://img.shields.io/badge/license-MIT-green?style=flat-square" alt="License">
+</p>
+
+# react-native-nitro-subject
 
 Finds the main subject in a photo and returns its bounding box. Useful for auto-cropping product photos.
 
 It uses Apple Vision on iOS and ML Kit Subject Segmentation (through Google Play services) on Android. No binaries are bundled, so the iOS pod also builds for the arm64 simulator.
-
-<p align="center">
-  <img src="./assets/demo-ios-simulator.png" width="260" alt="iOS" />
-  <img src="./assets/demo-android-emulator.png" width="260" alt="Android" />
-</p>
 
 ## Requirements
 
