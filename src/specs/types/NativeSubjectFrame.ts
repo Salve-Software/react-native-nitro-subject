@@ -1,10 +1,6 @@
 import type { SubjectSource } from './SubjectSource';
 
-/**
- * Subject bounding box as the native side reports it: pixels of the upright
- * (EXIF-corrected) image, unrounded and unpadded. `DetectSubject` turns it
- * into the public `ISubjectFrame`.
- */
+/** Raw box from native code, unrounded and without padding. */
 export interface NativeSubjectFrame {
   x: number;
   y: number;

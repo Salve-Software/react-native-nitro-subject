@@ -7,9 +7,8 @@ import { assertDetectProps, coversMinArea, fitRectToImage, padRect } from './lib
 export class DetectSubject {
   constructor(private readonly _bridge: SubjectDetector) {}
 
+  /** Not async, so invalid props throw at the call site instead of rejecting. */
   detect(props: IDetectProps): Promise<ISubjectFrame | null> {
-    // Validated before any await so a caller bug throws at the call site
-    // instead of surfacing later as a rejected promise.
     assertDetectProps(props);
 
     return this._detect(props);

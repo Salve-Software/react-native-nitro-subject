@@ -4,10 +4,7 @@ function clamp(value: number, max: number): number {
   return Math.min(Math.max(value, 0), max);
 }
 
-/**
- * Clips `rect` to the image and snaps it outwards to whole pixels, so the
- * subject is never cut by rounding. Returns `null` when nothing is left.
- */
+/** Clips `rect` to the image and rounds it outwards, or `null` when nothing is left. */
 export function fitRectToImage({ rect, image }: IFitRectToImageProps): IRect | null {
   if (!(image.width > 0 && image.height > 0)) return null;
 

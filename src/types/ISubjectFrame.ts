@@ -1,9 +1,6 @@
 import type { SubjectSource } from '../specs/types';
 
-/**
- * Box around the main subject, in pixels of the image as it is displayed
- * (EXIF orientation applied).
- */
+/** Box around the main subject, in pixels of the displayed image. */
 export interface ISubjectFrame {
   /** Left edge, in pixels. */
   x: number;
