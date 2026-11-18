@@ -1,6 +1,6 @@
 {
   "name": "@salve-software/react-native-nitro-subject",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Find the main subject of a photo and get its bounding box. Apple Vision on iOS, ML Kit Subject Segmentation via Google Play services on Android.",
   "main": "./lib/commonjs/index.js",
   "module": "./lib/module/index.js",
