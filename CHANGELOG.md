@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.1](https://github.com/Salve-Software/react-native-nitro-subject/compare/v1.0.0...v1.0.1) (2026-11-18)
+
+### 📚 Documentation
+
+* add npm version and downloads badges ([53e72ac](https://github.com/Salve-Software/react-native-nitro-subject/commit/53e72acd7980116634bcf4b4c97994561aa12b53))
+
 ## 1.0.0 (2026-11-18)
 
 ### ✨ Features
