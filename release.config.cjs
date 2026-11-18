@@ -52,9 +52,6 @@ module.exports = {
     [
       '@semantic-release/npm',
       {
-        // NPM_PUBLISH=false creates the tag and GitHub release but skips
-        // `npm publish`. Used for the first release, which is published by
-        // hand. See docs/releasing.md.
         npmPublish: process.env.NPM_PUBLISH !== 'false',
       },
     ],
