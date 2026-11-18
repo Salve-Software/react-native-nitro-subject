@@ -11,11 +11,7 @@ import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicBoolean
 
-/**
- * Checks for and downloads the ML Kit module Google Play services delivers on
- * demand. Never throws: a device without Play services, or any install
- * failure, reads as "not available" so detection can resolve null.
- */
+/** Checks and downloads the ML Kit module; failures read as "not available" instead of throwing. */
 class SubjectModelInstaller(context: Context, private val api: OptionalModuleApi) {
   private val client = ModuleInstall.getClient(context)
   private val available = AtomicBoolean(false)

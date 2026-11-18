@@ -13,10 +13,7 @@ class SubjectLocator(context: Context) {
   private val engine = SubjectSegmenterEngine()
   val installer = SubjectModelInstaller(context, engine.client)
 
-  /**
-   * Returns null when there is no subject. Also returns null when the model
-   * is not downloaded yet, after asking Play services to download it.
-   */
+  /** Null when there is no subject, or when the model still has to be downloaded. */
   fun locate(uri: String): LocatedSubject? {
     if (!installer.isAvailable()) {
       installer.requestDeferredInstall()

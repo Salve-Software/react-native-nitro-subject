@@ -1,10 +1,6 @@
 package com.nitrosubject.image
 
-/**
- * The eight EXIF orientations, as the transform that turns the stored pixels
- * upright: an optional horizontal mirror applied first, then a clockwise
- * rotation. Values match `ExifInterface.ORIENTATION_*`.
- */
+/** EXIF orientations as a mirror followed by a clockwise rotation; tags match `ExifInterface`. */
 enum class ExifOrientation(val tag: Int, val mirrored: Boolean, val clockwiseDegrees: Int) {
   NORMAL(1, mirrored = false, clockwiseDegrees = 0),
   FLIP_HORIZONTAL(2, mirrored = true, clockwiseDegrees = 0),

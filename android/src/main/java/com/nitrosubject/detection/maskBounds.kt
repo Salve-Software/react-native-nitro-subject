@@ -1,10 +1,6 @@
 package com.nitrosubject.detection
 
-/**
- * Tightest box around every mask value above [threshold], or null when there
- * is none. [valueAt] reads index `y * width + x`. Pixel edges are included:
- * a single set pixel at (0, 0) in a 4×4 mask spans 0–0.25 on both axes.
- */
+/** Smallest box around the mask values above [threshold]; [valueAt] reads `y * width + x`. */
 fun maskBounds(width: Int, height: Int, threshold: Float = 0.5f, valueAt: (Int) -> Float): MaskMatch? {
   if (width <= 0 || height <= 0) return null
 

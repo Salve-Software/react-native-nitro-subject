@@ -33,7 +33,7 @@ class UprightImageLoader(private val context: Context) {
     return if (options.outWidth > 0 && options.outHeight > 0) ImageSize(options.outWidth, options.outHeight) else null
   }
 
-  // A photo without readable EXIF is still a photo: treat it as upright.
+  /** Unreadable EXIF is treated as upright. */
   private fun readOrientation(source: ImageUri): ExifOrientation = try {
     source.open(context).use {
       ExifOrientation.fromTag(ExifInterface(it).getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL))
