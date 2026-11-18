@@ -65,8 +65,8 @@
     "provenance": true
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.25.3",
-    "@babel/preset-typescript": "^7.27.1",
+    "@babel/preset-env": "^8.0.7",
+    "@babel/preset-typescript": "^8.0.7",
     "@jamesacarr/eslint-formatter-github-actions": "^0.2.0",
     "@react-native/babel-preset": "0.86.0",
     "@semantic-release/changelog": "^6.0.3",
