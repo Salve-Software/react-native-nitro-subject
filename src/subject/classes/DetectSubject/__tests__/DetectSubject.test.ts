@@ -61,8 +61,7 @@ describe('DetectSubject', () => {
     ).resolves.toBeNull();
   });
 
-  test('resolves null when the box is below minAreaRatio', async () => {
-    // 400 × 300 of 1000 × 800 = 15%
+  test('resolves null when the box covers less than minAreaRatio (15% here)', async () => {
     const detect = new DetectSubject(makeBridge({ ...NATIVE, x: 100 }));
 
     await expect(detect.detect({ uri: '/a.jpg', minAreaRatio: 0.2 })).resolves.toBeNull();

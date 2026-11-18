@@ -12,7 +12,6 @@ describe('fitRectToImage', () => {
   test('snaps outwards so rounding never cuts the subject', () => {
     const rect = { x: 10.6, y: 20.2, width: 99.1, height: 50.5 };
 
-    // left 10.6 → 10, right 109.7 → 110, top 20.2 → 20, bottom 70.7 → 71
     expect(fitRectToImage({ rect, image })).toEqual({ x: 10, y: 20, width: 100, height: 51 });
   });
 
