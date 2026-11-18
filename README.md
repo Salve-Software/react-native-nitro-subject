@@ -1,14 +1,13 @@
 <p align="center">
-  <img src="assets/banner.png" alt="react-native-nitro-subject" width="1280">
+  <img src="./assets/banner@2x.png" alt="react-native-nitro-subject: finds the main subject of a photo and returns its bounding box, using Apple Vision and ML Kit." width="880">
 </p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/React%20Native-0.78+-61dafb?style=flat-square&logo=react" alt="React Native">
   <img src="https://img.shields.io/badge/Nitro%20Modules-0.37+-orange?style=flat-square" alt="Nitro Modules">
+  <img src="https://img.shields.io/badge/runs-on%20device-brightgreen?style=flat-square" alt="On device">
   <img src="https://img.shields.io/badge/license-MIT-green?style=flat-square" alt="License">
 </p>
-
-# react-native-nitro-subject
 
 Finds the main subject in a photo and returns its bounding box. Useful for auto-cropping product photos.
 
