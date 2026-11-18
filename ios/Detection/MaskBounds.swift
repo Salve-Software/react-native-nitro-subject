@@ -1,9 +1,7 @@
 import Foundation
 
 enum MaskBounds {
-  /// Tightest box around every pixel for which `isSet(x, y)` is true, or nil
-  /// when no pixel is set. Pixel edges are included: a single set pixel at
-  /// (0, 0) in a 4×4 mask spans 0–0.25 on both axes.
+  /// Smallest box around the pixels where `isSet(x, y)` is true, or nil when there are none.
   static func box(width: Int, height: Int, isSet: (_ x: Int, _ y: Int) -> Bool) -> NormalizedBox? {
     guard width > 0, height > 0 else { return nil }
 

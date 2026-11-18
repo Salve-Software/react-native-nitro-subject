@@ -1,7 +1,6 @@
 import CoreGraphics
 
-/// A downscaled, upright copy of a photo for analysis, plus the size of the
-/// full-resolution upright photo the result is mapped back to.
+/// Small upright copy of a photo for analysis, plus the size of the full photo.
 struct UprightImage {
   let analysisImage: CGImage
   let size: ImageSize

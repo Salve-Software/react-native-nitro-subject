@@ -2,9 +2,7 @@ import Foundation
 import ImageIO
 
 extension UprightImage {
-  /// Decodes `url` as a thumbnail no longer than `maxPixelSize` on its longest
-  /// side. `CreateThumbnailWithTransform` applies the EXIF orientation, so the
-  /// engines always see the photo the way the user does.
+  /// Decodes a thumbnail with the EXIF orientation applied, up to `maxPixelSize` on the longest side.
   static func load(url: URL, uri: String, maxPixelSize: Int) throws -> UprightImage {
     let sourceOptions = [kCGImageSourceShouldCache: false] as CFDictionary
     guard

@@ -1,10 +1,8 @@
 import Foundation
 
-/// Platform-independent core: uri in, subject in image pixels out. Holds no
-/// Nitro types so it can be unit-tested on macOS with `swift test`.
+/// Finds the subject of the photo at a uri; free of Nitro types so `swift test` can run it.
 struct SubjectLocator {
-  /// Longest side of the image the engines analyse. The box is scaled back to
-  /// full resolution, so this trades a few pixels of precision for speed.
+  /// Longest side of the image the engines analyze.
   static let analysisMaxPixelSize = 1024
 
   let chain: SubjectEngineChain

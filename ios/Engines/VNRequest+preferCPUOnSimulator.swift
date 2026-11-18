@@ -1,9 +1,7 @@
 import Vision
 
 extension VNRequest {
-  /// The iOS Simulator has no Neural Engine and Vision's default devices fail
-  /// there with "Failed to create espresso context". Pinning every stage to
-  /// the CPU lets the requests that can run on it do so. No-op elsewhere.
+  /// Runs the request on the CPU in the simulator, which has no Neural Engine.
   func preferCPUOnSimulator() {
     #if targetEnvironment(simulator)
     if #available(iOS 17.0, *) {

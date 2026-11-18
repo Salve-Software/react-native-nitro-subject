@@ -1,9 +1,7 @@
 import CoreVideo
 
 extension CVPixelBuffer {
-  /// Box around the mask pixels above `threshold`, for the single-channel
-  /// float and 8-bit formats Vision produces. Nil for other formats or an
-  /// empty mask.
+  /// Box around the mask pixels above `threshold`, for Vision's float and 8-bit masks.
   func maskBounds(threshold: Float = 0.5) -> NormalizedBox? {
     CVPixelBufferLockBaseAddress(self, .readOnly)
     defer { CVPixelBufferUnlockBaseAddress(self, .readOnly) }

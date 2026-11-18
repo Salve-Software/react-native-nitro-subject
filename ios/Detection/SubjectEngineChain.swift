@@ -3,9 +3,7 @@ import os
 
 private let logger = Logger(subsystem: "com.salvesoftware.nitrosubject", category: "SubjectEngineChain")
 
-/// Runs engines best-first and returns the first match. An engine that throws
-/// or finds nothing hands over to the next one; the chain only throws when
-/// every engine threw, so "nothing found" and "could not run" stay distinct.
+/// Runs the engines in order and returns the first match; throws only if all of them threw.
 struct SubjectEngineChain {
   let engines: [SubjectEngine]
 

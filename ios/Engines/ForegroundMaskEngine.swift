@@ -1,8 +1,7 @@
 import CoreGraphics
 import Vision
 
-/// Box around all the foreground instances Vision finds. The most accurate
-/// engine, since it follows the outline of the subject.
+/// Box around all the foreground instances Vision finds.
 @available(iOS 17.0, macOS 14.0, *)
 struct ForegroundMaskEngine: SubjectEngine {
   let kind = SubjectEngineKind.foregroundMask

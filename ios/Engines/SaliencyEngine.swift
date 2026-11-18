@@ -1,8 +1,7 @@
 import CoreGraphics
 import Vision
 
-/// Most confident salient region. Objectness looks for objects; attention
-/// for where a person would look first, so it nearly always answers.
+/// Most confident salient region, by objectness or by attention.
 struct SaliencyEngine: SubjectEngine {
   let kind: SubjectEngineKind
 
