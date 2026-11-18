@@ -1,26 +1,20 @@
 import React from 'react';
-import {Text, View, StyleSheet } from 'react-native';
-import { NitroSubject } from 'react-native-nitro-subject';
+import { StatusBar, StyleSheet } from 'react-native';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { DetectScreen } from './src/screens/DetectScreen';
+import { colors } from './src/theme/tokens';
 
-function App(): React.JSX.Element {
+export default function App(): React.JSX.Element {
   return (
-    <View style={styles.container}>
-        <Text style={styles.text}>
-        {NitroSubject.sum(1, 2)}
-        </Text>
-    </View>
+    <SafeAreaProvider>
+      <StatusBar barStyle="light-content" backgroundColor={colors.canvas} />
+      <SafeAreaView style={styles.root}>
+        <DetectScreen />
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  text: {
-        fontSize: 40, 
-        color: 'green'
-    }});
-
-export default App;
+  root: { flex: 1, backgroundColor: colors.canvas },
+});

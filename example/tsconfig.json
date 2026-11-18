@@ -4,9 +4,8 @@
   "exclude": ["**/node_modules", "**/Pods"],
   "compilerOptions": {
     "strict": true,
-    "baseUrl": ".",
     "paths": {
-      "react-native-nitro-subject": ["../src"]
+      "@salve-software/react-native-nitro-subject": ["../src/index.ts"]
     }
   }
 }

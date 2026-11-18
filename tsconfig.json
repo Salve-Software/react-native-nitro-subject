@@ -6,7 +6,9 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "jsx": "react",
-    "lib": ["esnext"],
+    "lib": [
+      "esnext"
+    ],
     "module": "esnext",
     "moduleResolution": "bundler",
     "noEmit": false,
@@ -21,17 +23,22 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "esnext",
-    "verbatimModuleSyntax": true
+    "verbatimModuleSyntax": true,
+    "types": [
+      "jest"
+    ]
   },
   "exclude": [
     "**/node_modules",
     "**/lib",
     "**/.eslintrc.js",
     "**/.prettierrc.js",
-    "**/jest.config.js",
     "**/babel.config.js",
     "**/metro.config.js",
     "**/tsconfig.json"
   ],
-  "include": ["src/**/*", "nitrogen/**/*.json"]
+  "include": [
+    "src/**/*",
+    "nitrogen/**/*.json"
+  ]
 }
