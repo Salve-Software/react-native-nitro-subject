@@ -3,14 +3,9 @@ import Foundation
 import ImageIO
 import UniformTypeIdentifiers
 
-/// Writes generated test photos to a temp dir: a dark rounded shape on a
-/// light background.
+/// Writes generated test photos: a dark rounded shape on a light background.
 enum FixtureImage {
-  /// - Parameters:
-  ///   - size: Size of the upright image.
-  ///   - subject: Where the subject sits in the upright image, top-left origin.
-  ///   - exifOrientation: EXIF tag to store. The pixels are rotated so the
-  ///     image still *displays* as `size` with the subject at `subject`.
+  /// Photo that displays as `size` with the subject at `subject`, whatever the EXIF tag.
   static func write(size: CGSize, subject: CGRect, exifOrientation: Int = 1) throws -> URL {
     let upright = try draw(size: size, subject: subject)
     let stored = exifOrientation == 6 ? try rotateForOrientation6(upright) : upright
@@ -28,7 +23,6 @@ enum FixtureImage {
 
   private static func draw(size: CGSize, subject: CGRect) throws -> CGImage {
     let context = try makeContext(width: Int(size.width), height: Int(size.height))
-    // CoreGraphics has a bottom-left origin; flip so `subject` is top-left.
     context.translateBy(x: 0, y: size.height)
     context.scaleBy(x: 1, y: -1)
 
@@ -44,10 +38,7 @@ enum FixtureImage {
     return image
   }
 
-  /// Pixels as a camera held for EXIF orientation 6 stores them: viewers
-  /// rotate them 90° clockwise to display, so they are stored 90° counter-
-  /// clockwise of upright. CoreGraphics' y axis points up, so that is a +90°
-  /// rotation in its coordinate space.
+  /// Pixels stored for EXIF orientation 6, which viewers rotate 90° clockwise to display.
   private static func rotateForOrientation6(_ image: CGImage) throws -> CGImage {
     let context = try makeContext(width: image.height, height: image.width)
     context.translateBy(x: CGFloat(image.height), y: 0)

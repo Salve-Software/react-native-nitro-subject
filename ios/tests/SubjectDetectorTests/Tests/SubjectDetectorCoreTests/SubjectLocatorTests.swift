@@ -27,7 +27,6 @@ final class SubjectLocatorTests: XCTestCase {
   }
 
   func testExifRotatedPhotoIsAnalysedAndMeasuredUpright() throws {
-    // Stored portrait (1200×1600) with orientation 6, displayed as 1600×1200.
     let url = try FixtureImage.write(size: size, subject: subject, exifOrientation: 6)
     let engine = StubEngine(.foregroundMask, .match(NormalizedBox(minX: 0, minY: 0, maxX: 1, maxY: 1)))
 

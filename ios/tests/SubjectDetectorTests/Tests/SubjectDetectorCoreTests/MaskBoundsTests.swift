@@ -17,7 +17,6 @@ final class MaskBoundsTests: XCTestCase {
   }
 
   func testBoxSpansDisjointRegions() {
-    // Two blobs: (1,1) and (6,2) in an 8×4 mask.
     let box = MaskBounds.box(width: 8, height: 4) { x, y in (x == 1 && y == 1) || (x == 6 && y == 2) }
 
     XCTAssertEqual(box, NormalizedBox(minX: 0.125, minY: 0.25, maxX: 0.875, maxY: 0.75))

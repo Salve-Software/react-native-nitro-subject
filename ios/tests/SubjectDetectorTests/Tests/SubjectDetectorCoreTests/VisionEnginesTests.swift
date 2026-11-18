@@ -1,8 +1,7 @@
 import XCTest
 @testable import SubjectDetectorCore
 
-/// Runs the real Vision engines on the host Mac (Neural Engine available,
-/// unlike the iOS Simulator) against a synthetic photo with a known subject.
+/// Runs the real Vision engines on the Mac against a generated photo.
 final class VisionEnginesTests: XCTestCase {
   private let size = CGSize(width: 1600, height: 1200)
   private let subject = CGRect(x: 500, y: 300, width: 500, height: 700)
@@ -42,8 +41,7 @@ final class VisionEnginesTests: XCTestCase {
     XCTAssertEqual(a.rect.height, b.rect.height, accuracy: 8)
   }
 
-  /// `rect` hugs `expected`: every edge within `tolerance` pixels (the drop
-  /// shadow and the 1024-px analysis copy make it slightly loose).
+  /// Every edge of `rect` is within `tolerance` pixels of `expected`.
   private func assertCovers(_ rect: PixelRect, _ expected: CGRect, tolerance: Double, file: StaticString = #filePath, line: UInt = #line) {
     XCTAssertEqual(rect.x, expected.minX, accuracy: tolerance, "left", file: file, line: line)
     XCTAssertEqual(rect.y, expected.minY, accuracy: tolerance, "top", file: file, line: line)
@@ -51,7 +49,7 @@ final class VisionEnginesTests: XCTestCase {
     XCTAssertEqual(rect.y + rect.height, expected.maxY, accuracy: tolerance, "bottom", file: file, line: line)
   }
 
-  /// Saliency boxes are coarse: only require the subject's centre inside.
+  /// The center of `expected` is inside `rect`.
   private func assertOverlaps(_ rect: PixelRect, _ expected: CGRect, file: StaticString = #filePath, line: UInt = #line) {
     let box = CGRect(x: rect.x, y: rect.y, width: rect.width, height: rect.height)
     XCTAssertTrue(box.contains(CGPoint(x: expected.midX, y: expected.midY)), "\(box) misses \(expected)", file: file, line: line)

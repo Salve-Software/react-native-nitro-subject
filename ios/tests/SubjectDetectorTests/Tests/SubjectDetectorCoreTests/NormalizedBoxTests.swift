@@ -3,11 +3,9 @@ import XCTest
 
 final class NormalizedBoxTests: XCTestCase {
   func testVisionRectIsFlippedToTopLeftOrigin() {
-    // Vision: bottom-left origin. A box hugging the bottom of the image…
-    let box = NormalizedBox(visionRect: CGRect(x: 0.2, y: 0, width: 0.5, height: 0.25))
+    let boxAtTheBottom = NormalizedBox(visionRect: CGRect(x: 0.2, y: 0, width: 0.5, height: 0.25))
 
-    // …is at the bottom in top-left coordinates too.
-    XCTAssertEqual(box, NormalizedBox(minX: 0.2, minY: 0.75, maxX: 0.7, maxY: 1))
+    XCTAssertEqual(boxAtTheBottom, NormalizedBox(minX: 0.2, minY: 0.75, maxX: 0.7, maxY: 1))
   }
 
   func testToPixelsScalesByTheImageSize() {
