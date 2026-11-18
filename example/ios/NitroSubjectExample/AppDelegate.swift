@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
 }
 
-/// iOS 27 SDK requires the UIScene life cycle.
+/// Window setup; the iOS 27 SDK requires the UIScene life cycle.
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   var window: UIWindow?
 

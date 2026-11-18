@@ -6,10 +6,7 @@ interface IContainRectProps {
   viewHeight: number;
 }
 
-/**
- * Converts the frame from image pixels to the coordinates of an
- * `<Image resizeMode="contain">`, which scales the image to fit and centers it.
- */
+/** Converts the frame to the coordinates of an `<Image resizeMode="contain">`. */
 export function containRect({
   frame,
   viewWidth,
